@@ -1,6 +1,6 @@
 class Brain
     include HTTParty
-    base_uri 'whateverthebrain.com'
+    base_uri 'jarvis-brain.herokuapp.com'
 
     def initialize(token)
         @token = token
