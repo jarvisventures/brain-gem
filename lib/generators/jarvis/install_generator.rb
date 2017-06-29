@@ -6,6 +6,11 @@ module Jarvis
 
             desc "Creates Jarvis initializer, controllers, views, and routes."
 
+            def self.next_migration_number(path)
+                sleep 1
+                Time.now.utc.strftime("%Y%m%d%H%M%S")
+            end
+
             def install
                 # Create initializer
                 copy_file "config/initializers/jarvis.rb", "config/initializers/jarvis.rb"
