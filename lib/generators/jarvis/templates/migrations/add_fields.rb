@@ -47,6 +47,7 @@ class AddFields < ActiveRecord::Migration<%= Rails::VERSION::MAJOR >= 5 ? "[#{Ra
     add_column(:users, :ancestry, :string) if !column_exists?(:users, :ancestry)
     add_column(:users, :last_changed, :datetime) if !column_exists?(:users, :last_changed)
     add_column(:users, :employee_number, :string) if !column_exists?(:users, :employee_number)
+    add_column(:users, :jarvis_token, :string) if !column_exists?(:users, :jarvis_token)
 
   end
 end
