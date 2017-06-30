@@ -1,5 +1,6 @@
 require 'active_record' unless defined? ActiveRecord
 require "jarvis/version"
+require 'ancestry'
 
 module Jarvis
   class Engine < ::Rails::Engine
@@ -10,7 +11,8 @@ ActiveSupport.on_load(:active_record) do
   class ActiveRecord::Base
     def self.has_jarvis
       include Jarvis
-
+      include Ancestry
+      has_ancestry
       # def company_token=(val)
       #   company = Company.find_by(token: val)
       #   company = Company.create()
