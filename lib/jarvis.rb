@@ -1,5 +1,6 @@
 require "jarvis/version"
 
 module Jarvis
-  # Your code goes here...
+  class Engine < ::Rails::Engine
+  end
 end
