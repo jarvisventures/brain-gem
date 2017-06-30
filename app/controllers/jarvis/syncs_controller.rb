@@ -34,7 +34,7 @@ module Jarvis
 
       def user_params
         params.require(:user).permit(:id, :company_id, :division_id, :department_id, :first_name, :last_name, :email, :token, :address_1, :address_2, :city, :state, :zipcode, :country, :home_phone, :mobile_phone, :age, :date_of_birth, :ethnicity, :gender, :marital_status, :active, :employee_number, :hire_date,
-        :termination_date, :ancestry, :last_changed)
+        :termination_date, :ancestry, :last_changed, :password, :password_confirmation)
       end
   end
 end
