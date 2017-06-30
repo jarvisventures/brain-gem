@@ -1,6 +1,6 @@
 module Jarvis
   class SyncsController < ApplicationController
-    before_action :set_user
+    before_action :set_user, only: [:update, :destroy, :login]
     access all: :all
     skip_before_action :verify_authenticity_token
     def create
@@ -29,8 +29,7 @@ module Jarvis
     end
 
     def login
-      set_flash_message!(:notice, :signed_in)
-      sign_in @user
+      sign_in(@user)
       redirect_to root_path
     end
 
