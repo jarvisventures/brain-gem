@@ -35,11 +35,11 @@ module Jarvis
 
     private
       def set_user
-        @user = User.find_by(jarvis_token: params[:jarvis_token])
+        @user = User.find_by(api_token: params[:api_token])
       end
 
       def user_params
-        params.require(:user).permit(:id, :company_id, :division_id, :department_id, :first_name, :last_name, :email, :token, :address_1, :address_2, :city, :state, :zipcode, :country, :home_phone, :mobile_phone, :age, :date_of_birth, :ethnicity, :gender, :marital_status, :active, :employee_number, :hire_date,
+        params.require(:user).permit(:id, :api_token, :company_token, :division_token, :department_token, :first_name, :last_name, :email, :token, :address_1, :address_2, :city, :state, :zipcode, :country, :home_phone, :mobile_phone, :age, :date_of_birth, :ethnicity, :gender, :marital_status, :active, :employee_number, :hire_date,
         :termination_date, :ancestry, :last_changed, :password, :password_confirmation)
       end
   end
