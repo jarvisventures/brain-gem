@@ -13,7 +13,7 @@ module Jarvis
 
             def install
                 # Create initializer
-                copy_file "config/initializers/jarvis.rb", "config/initializers/jarvis.rb"
+                copy_file "#{self.class.source_root}/config/initializers/jarvis.rb", "config/initializers/jarvis.rb"
             end
 
             def create_migrations
