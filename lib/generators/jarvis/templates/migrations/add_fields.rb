@@ -10,14 +10,17 @@ class AddFields < ActiveRecord::Migration<%= Rails::VERSION::MAJOR >= 5 ? "[#{Ra
     add_column(:companies, :name, :string) unless column_exists?(:companies, :name)
     add_column(:companies, :token, :string) unless column_exists?(:companies, :token)
     add_column(:companies, :active, :boolean) unless column_exists?(:companies, :active)
+    add_column(:companies, :api_token, :string) unless column_exists?(:companies, :api_token)
 
     # add all of the divisions properties
     add_column(:divisions, :name, :string) unless column_exists?(:divisions, :name)
     add_reference(:divisions, :company, foreign_key: true) unless column_exists?(:divisions, :company_id)
+    add_column(:divisions, :api_token, :string) unless column_exists?(:divisions, :api_token)
 
-    # add all of the divisions properties
+    # add all of the departments properties
     add_column(:departments, :name, :string) unless column_exists?(:departments, :name)
     add_reference(:departments, :company, foreign_key: true) unless column_exists?(:departments, :company_id)
+    add_column(:departments, :api_token, :string) unless column_exists?(:departments, :api_token)
 
     # add all of the user properties
     add_reference(:users, :company, foreign_key: true) unless column_exists?(:users, :company_id)
@@ -47,7 +50,7 @@ class AddFields < ActiveRecord::Migration<%= Rails::VERSION::MAJOR >= 5 ? "[#{Ra
     add_column(:users, :ancestry, :string) unless column_exists?(:users, :ancestry)
     add_column(:users, :last_changed, :datetime) unless column_exists?(:users, :last_changed)
     add_column(:users, :employee_number, :string) unless column_exists?(:users, :employee_number)
-    add_column(:users, :jarvis_token, :string) unless column_exists?(:users, :jarvis_token)
+    add_column(:users, :api_token, :string) unless column_exists?(:users, :jarvis_token)
 
   end
 end
