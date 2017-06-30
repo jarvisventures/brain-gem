@@ -1,3 +1,4 @@
+require 'httparty'
 class Brain
     include HTTParty
     base_uri 'jarvis-brain.herokuapp.com'

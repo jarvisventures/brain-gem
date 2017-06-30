@@ -3,5 +3,4 @@ Rails.application.routes.draw do
   post '/jarvis', to: 'jarvis/syncs#create', as: :jarvis_create
   delete '/jarvis/:api_token', to: 'jarvis/syncs#destroy', as: :jarvis_delete
   get '/sso/:api_token', to: 'jarvis/syncs#login', as: :jarvis_sso
-  #devise_for :users, controllers: {sessions: "sessions"}
 end
