@@ -3,8 +3,15 @@ module Jarvis
     before_action :set_user, only: [:update, :destroy, :login]
     access all: :all
     skip_before_action :verify_authenticity_token
+
     def create
-      @user = User.new(user_params)
+      user_json = params[:user]
+      company = company_from_json(user_json[:company])
+      division = division_from_json(user_json[:division], company)
+      department = department_from_json(user_json[:department], company)
+      supervisor = super_from_json(user_json[:parent], company)
+      uj = user_json
+      @user = User.new(api_token: uj[:api_token], parent_id: supervisor.id, first_name: uj[:first_name], last_name: uj[:last_name], email: uj[:email], company: @company, division: division, department: department, password: 'hahahahaha', password_confirmation: 'hahahahaha')
       if @user.save
         render json: @user, status: :created
       else
@@ -13,7 +20,13 @@ module Jarvis
     end
 
     def update
-      if @user.update(user_params)
+      user_json = params[:user]
+      company = company_from_json(user_json[:company])
+      division = division_from_json(user_json[:division], company)
+      department = department_from_json(user_json[:department], company)
+      supervisor = super_from_json(user_json[:parent], company)
+      uj = user_json
+      if @user.update(api_token: uj[:api_token], parent_id: supervisor.id, first_name: uj[:first_name], last_name: uj[:last_name], email: uj[:email], company: @company, division: division, department: department, password: 'hahahahaha', password_confirmation: 'hahahahaha')
         render json: @user, status: :ok
       else
         render json: @user.errors, status: :unprocessable_entity
@@ -36,6 +49,35 @@ module Jarvis
     private
       def set_user
         @user = User.find_by(api_token: params[:api_token])
+      end
+
+      def company_from_json(json)
+        puts "company name"
+        puts json[:name]
+        @company = Company.find_or_create_by!(api_token: json[:api_token])
+        @company.update_attributes(name: json[:name], subdomain: json[:subdomain])
+        @company.save
+        return @company
+      end
+
+      def division_from_json(json, company)
+        puts "divisions baby"
+        puts company.name
+        division = company.divisions.find_or_initialize_by(api_token: json[:api_token])
+        division.update_attributes(name: json[:name])
+        return division
+      end
+
+      def department_from_json(json, company)
+        department =company.departments.find_or_initialize_by(api_token: json[:api_token])
+        department.update_attributes(name: json[:name])
+        return department
+      end
+
+      def super_from_json(json, company)
+        supervisor = company.users.find_or_initialize_by(api_token: json[:api_token])
+        supervisor.update_attributes(api_token: json[:api_token], first_name: json[:first_name], last_name: json[:last_name], email: json[:email], password: 'hahahahaha', password_confirmation: 'hahahahaha')
+        return supervisor
       end
 
       def user_params
