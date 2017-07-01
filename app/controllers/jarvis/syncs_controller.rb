@@ -45,7 +45,7 @@ module Jarvis
 
     def login
       sign_in(@user)
-      redirect_to root_path
+      redirect_to authenticated_root_path
     end
 
     private
