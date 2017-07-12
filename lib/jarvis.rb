@@ -13,6 +13,11 @@ ActiveSupport.on_load(:active_record) do
       include Jarvis
       include Ancestry
       has_ancestry
+
+      def push_to_jarvis
+        puts "pushed to jarvis"
+      end
+      
       # def company_token=(val)
       #   company = Company.find_by(token: val)
       #   company = Company.create()
@@ -44,7 +49,6 @@ ActiveSupport.on_load(:active_record) do
       after_update do
         puts "updated"
       end
-
     end
   end
 end
