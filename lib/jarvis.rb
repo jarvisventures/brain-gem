@@ -15,9 +15,15 @@ ActiveSupport.on_load(:active_record) do
       has_ancestry
 
       def push_to_jarvis
-        puts "pushed to jarvis"
+        if Rails.env == "production"
+          puts "push to jarvis production"
+        elsif Rails.env == "staging"
+          puts "push to jarvis staging"
+        else
+          puts "push to jarvis local"
+        end
       end
-      
+
       # def company_token=(val)
       #   company = Company.find_by(token: val)
       #   company = Company.create()
