@@ -8,6 +8,9 @@ module Jarvis
     module ClassMethods
       def is_brain_user
         include Jarvis::IsBrainUser::LocalInstanceMethods
+        after_create do
+          puts "created on the brain"
+        end
       end
     end
     module LocalInstanceMethods
