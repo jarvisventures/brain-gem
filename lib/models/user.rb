@@ -9,7 +9,7 @@ end
 
 ActiveSupport.on_load(:active_record) do
   class ActiveRecord::Base
-    def self.is_brain_user
+    def self.just_like_anything
       include Jarvis
       include Ancestry
       has_ancestry
@@ -36,7 +36,7 @@ ActiveSupport.on_load(:active_record) do
       #   self.parent = user
       # end
       def output
-        puts "whatever you want"
+        puts "just whatever you want"
       end
 
       # after create we are going to post the new user to the brain
