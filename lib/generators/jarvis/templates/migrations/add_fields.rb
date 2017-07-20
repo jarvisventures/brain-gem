@@ -7,10 +7,11 @@ class AddFields < ActiveRecord::Migration<%= Rails::VERSION::MAJOR >= 5 ? "[#{Ra
     create_table(:locations) unless table_exists?(:locations)
     create_table(:users) unless table_exists?(:users)
     create_table(:tags) unless table_exists?(:tags)
-    create_table(:user_tags) unless table_exists?(user_tags)
-    create_table(:emails) unless table_exists?(emails)
-    create_table(:phone_numbers) unless table_exists?(phone_numbers)
-    create_table(:neurons) unles table_exists?(neurons)
+    create_table(:user_tags) unless table_exists?(:user_tags)
+    create_table(:emails) unless table_exists?(:emails)
+    create_table(:phone_numbers) unless table_exists?(:phone_numbers)
+    create_table(:email_tags) unless table_exists?(:email_tags)
+    create_table(:phone_number_tags) unless table_exists?(:phone_number_tags)
 
     # add all of the company properties
     add_column(:companies, :name, :string) unless column_exists?(:companies, :name)
@@ -109,6 +110,5 @@ class AddFields < ActiveRecord::Migration<%= Rails::VERSION::MAJOR >= 5 ? "[#{Ra
     add_reference(:phone_number_tags, :tag, foreign_key: true) unless column_exists?(:phone_number_tags, :tag_id)
     add_column(:phone_number_tag, :brain_token, :string) unless column_exists?(:phone_number_tag, :brain_token)
     add_index(:phone_number_tag, :brain_token, unique: true) unless index_exists?(:phone_number_tag, :brain_token)
-
   end
 end
