@@ -9,7 +9,12 @@ module Jarvis
       def is_brain_user
         include Jarvis::IsBrainUser::LocalInstanceMethods
         after_create do
-          puts "created on the brain"
+          method =  "POST"
+          url = ENV["BRAIN_URL"]
+          body = self.to_json
+          headers = nil
+          results = HTTParty.public_send(method,url, body: body, headers: headers)
+          self.brain_token = results.brain_token
         end
       end
     end
