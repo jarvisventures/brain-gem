@@ -8,7 +8,7 @@ end
 
 
 ActiveSupport.on_load(:active_record) do
-  class ActiveRecord::Base
+  class ApplicationRecord
     def self.is_brain_user
       include Jarvis::IsBrainUser
     end
