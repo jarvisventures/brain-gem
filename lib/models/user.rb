@@ -42,6 +42,6 @@ module Jarvis
           HTTParty.public_send('put', url, body: body )
         end
       end
-  class Engine < ::Rails::Engine
+    end
   end
 end
