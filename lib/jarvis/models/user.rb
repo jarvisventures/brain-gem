@@ -6,6 +6,10 @@ module Jarvis
         include Ancestry
         has_ancestry
 
+        def output
+          puts "wouldn't it be cool if this works"
+        end
+
         # def company_token=(val)
         #   company = Company.find_by(token: val)
         #   company = Company.create()
