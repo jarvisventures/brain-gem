@@ -10,7 +10,7 @@ module Jarvis
         include Jarvis::IsBrainUser::LocalInstanceMethods
         after_create do
           method =  "post"
-          url = ENV["BRAIN_URL"] + "/user"
+          url = "http://" + ENV["BRAIN_URL"] + "/user"
           body = self.to_json
           headers = nil
           results = HTTParty.public_send(method,url, body: body, headers: headers)
