@@ -1,6 +1,20 @@
-User.class_eval do
-  def output
-    "I hope this works"
+module Jarvis
+  module IsBrainUser
+    extend ActiveRecord::Concern
+
+    included do
+    end
+
+    module ClassMethods
+      def is_brain_user
+        include Jarvis::IsBrainUser::LocalInstanceMethods
+      end
+    end
+    module LocalInstanceMethods
+      def output
+        puts "I hope this works"
+      end
+    end
   end
 end
 
