@@ -6,8 +6,11 @@ require 'jarvis/models/is_brain_user'
 module Jarvis
 end
 
+
 ActiveSupport.on_load(:active_record) do
   class ActiveRecord::Base
-      include Jarvis
+    def self.is_brain_user
+      include Jarvis::IsBrainUser
     end
   end
+end
