@@ -49,3 +49,7 @@ module Jarvis
     end
   end
 end
+
+class ActiveRecord::Base
+  include Jarvis::ActiveRecord::Base
+end
