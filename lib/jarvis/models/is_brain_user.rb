@@ -1,6 +1,6 @@
 module Jarvis
   module IsBrainUser
-    extend ActiveRecord::Concern
+    extend ActiveSupport::Concern
 
     included do
     end
