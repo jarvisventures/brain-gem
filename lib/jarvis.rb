@@ -9,20 +9,10 @@ end
 
 ActiveSupport.on_load(:active_record) do
   class ActiveRecord::Base
-    def self.has_jarvis
+    def self.is_brain_user
       include Jarvis
       include Ancestry
       has_ancestry
-
-      def push_to_jarvis
-        if Rails.env == "production"
-          puts "push to jarvis production"
-        elsif Rails.env == "staging"
-          puts "push to jarvis staging"
-        else
-          puts "push to jarvis local"
-        end
-      end
 
       # def company_token=(val)
       #   company = Company.find_by(token: val)
@@ -48,12 +38,16 @@ ActiveSupport.on_load(:active_record) do
 
       # after create we are going to post the new user to the brain
       after_create do
-        puts "created"
+        body = build_body
+        url = ENV["BRAIN_URL"] + 'users'
+        HTTParty.public_send('post', url, body: self.to_json)
       end
 
       # after an update we will put the changes to the brain
       after_update do
-        puts "updated"
+        body = build_body
+        url = ENV["BRAIN_URL"] + 'users'
+        HTTParty.public_send('put', url, body: body )
       end
     end
   end
