@@ -28,7 +28,7 @@ module Jarvis
       end
       def jarvis_user_serializer
         hash = self.to_json
-        hash.merge(company: self.company.to_json) unless self.company.blank?
+        hash[:company] = unless self.company.blank? ? self.company.to_json : {}
         hash.merge(department: self.department.to_json) unless self.department.blank?
         hash.merge(division: self.division.to_json) unless self.division.blank?
         hash.merge(location: self.company.to_json) unless self.location.blank?
