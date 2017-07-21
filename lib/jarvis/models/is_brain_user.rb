@@ -9,6 +9,7 @@ module Jarvis
     module ClassMethods
       def is_brain_user
         include Jarvis::IsBrainUser::LocalInstanceMethods
+        include Jarvis::Serializers::UserSerializer
         after_create do
           method = "post"
           url = ENV["BRAIN_URL"] + "/user"
