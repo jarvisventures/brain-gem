@@ -19,7 +19,7 @@ module Jarvis
           method = "post"
           url = ENV["BRAIN_URL"] + "/user"
           body = self.jarvis_user_serializer
-          results = HTTParty.public_send(method, url, body: body)
+          results = HTTParty.public_send(method, url, body: body).symbolize_keys
           self.brain_token = results[:user][:brain_token]
         end
       end
