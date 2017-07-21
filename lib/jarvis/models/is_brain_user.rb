@@ -7,27 +7,24 @@ module Jarvis
     end
 
     module ClassMethods
-      class UserSerializer < ActiveModel::Serializer
-        attributes :password_digest, :brain_token, :first_name, :last_name, :address_1, :address_2, :city, :state, :country, :zipcode, :age, :date_of_birth, :ethnicity, :gender, :marital_status, :active,
-        :hr_software_id, :employee_number, :supervisor_id, :hire_date, :rehire_date, :termination_date, :ancestry, :last_changed
-        has_one :division
-        has_one :department
-        has_one :company
-        has_one :location
-        has_many :emails
-        has_many :phone_numbers
-        has_many :tags
-        has_one :parent
-      end
       def is_brain_user
         include Jarvis::IsBrainUser::LocalInstanceMethods
         after_create do
           method = "post"
           url = ENV["BRAIN_URL"] + "/user"
-          body = UserSerializer.new(self)
-          debugger
-          HTTParty.public_send(method, url, body: body)
+          body = jarvis_user_serializer
+          results = HTTParty.public_send(method, url, body: body)
+          self.brain_token = results[:user][:brain_token]
         end
+        private
+          def jarvis_user_serializer
+            hash = self.to_json
+            hash.merge(company: self.company.to_json) if self.company
+            hash.merge(department: self.department.to_json) if self.department
+            hash.merge(division: self.division.to_json) if self.division
+            hash.merge(location: self.company.to_json) if self.location
+            return hash
+          end
       end
     end
     module LocalInstanceMethods
