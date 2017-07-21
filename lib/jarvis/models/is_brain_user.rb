@@ -28,10 +28,10 @@ module Jarvis
       end
       def jarvis_user_serializer
         hash = self.to_json
-        hash.merge(company: self.company.to_json) unless self.company.blank?
-        hash.merge(department: self.department.to_json) unless self.department.blank?
-        hash.merge(division: self.division.to_json) unless self.division.blank?
-        hash.merge(location: self.company.to_json) unless self.location.blank?
+        unless self.company.blank? ? hash.merge(company: self.company.to_json) : hash[:company] = nil
+        unless self.department.blank? ? hash.merge(department: self.department.to_json) : hash[:department] = nil
+        unless self.division.blank? ? hash.merge(division: self.division.to_json) : hash[:division] = nil
+        unless self.location.blank? ? hash.merge(location: self.company.to_json) : has[:division] = nil
         return hash
       end
     end
