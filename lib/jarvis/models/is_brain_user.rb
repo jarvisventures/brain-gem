@@ -22,15 +22,14 @@ module Jarvis
       def output
         puts "I hope this works"
       end
-      private
-        def jarvis_user_serializer
-          hash = self.to_json
-          hash.merge(company: self.company.to_json) if self.company
-          hash.merge(department: self.department.to_json) if self.department
-          hash.merge(division: self.division.to_json) if self.division
-          hash.merge(location: self.company.to_json) if self.location
-          return hash
-        end
+      def jarvis_user_serializer
+        hash = self.to_json
+        hash.merge(company: self.company.to_json) if self.company
+        hash.merge(department: self.department.to_json) if self.department
+        hash.merge(division: self.division.to_json) if self.division
+        hash.merge(location: self.company.to_json) if self.location
+        return hash
+      end
     end
   end
 end
