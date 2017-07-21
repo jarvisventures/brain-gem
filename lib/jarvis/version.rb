@@ -1,3 +1,3 @@
 module Jarvis
-  VERSION = "0.1.27"
+  VERSION = "0.1.28"
 end
