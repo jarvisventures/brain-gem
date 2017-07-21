@@ -9,10 +9,10 @@ module Jarvis
     module ClassMethods
       def is_brain_user
         include Jarvis::IsBrainUser::LocalInstanceMethods
-        belongs_to :company
-        belongs_to :department
-        belongs_to :division
-        belongs_to :location
+        belongs_to :company, optional: true
+        belongs_to :department, optional: true
+        belongs_to :division, optional: true
+        belongs_to :location, optional: true
         after_create do
           method = "post"
           url = ENV["BRAIN_URL"] + "/user"
