@@ -1,3 +1,4 @@
+require 'serializers/user_serializer'
 module Jarvis
   module IsBrainUser
     extend ActiveSupport::Concern
@@ -9,12 +10,10 @@ module Jarvis
       def is_brain_user
         include Jarvis::IsBrainUser::LocalInstanceMethods
         after_create do
-          method =  "post"
+          method = "post"
           url = ENV["BRAIN_URL"] + "/user"
-          body = {user: self.to_json}
-          headers = nil
-          results = HTTParty.public_send(method,url, body: body, headers: headers)
-          self.brain_token = results[:user][:brain_token]
+          body = UserSerializer.new(self)
+          HTTParty.public_send(method, url, body: body)
         end
       end
     end
