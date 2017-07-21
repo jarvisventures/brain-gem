@@ -1,60 +1,17 @@
 require 'active_record' unless defined? ActiveRecord
 require "jarvis/version"
 require 'ancestry'
+require 'jarvis/models/is_brain_user'
+require 'jarvis/models/is_brain_company'
+require 'jarvis/models/is_brain_department'
+require 'jarvis/models/is_brain_division'
+require 'jarvis/models/is_brain_email'
+require 'jarvis/models/is_brain_location'
+require 'jarvis/models/is_brain_phone_number'
+require 'jarvis/models/is_brain_tag'
+require 'jarvis/models/is_brain_user_tag'
+require 'jarvis/models/is_brain_phone_number_tag'
+require 'jarvis/models/is_brain_email_tag'
 
 module Jarvis
-  class Engine < ::Rails::Engine
-  end
-end
-
-ActiveSupport.on_load(:active_record) do
-  class ActiveRecord::Base
-    def self.has_jarvis
-      include Jarvis
-      include Ancestry
-      has_ancestry
-
-      def push_to_jarvis
-        if Rails.env == "production"
-          puts "push to jarvis production"
-        elsif Rails.env == "staging"
-          puts "push to jarvis staging"
-        else
-          puts "push to jarvis local"
-        end
-      end
-
-      # def company_token=(val)
-      #   company = Company.find_by(token: val)
-      #   company = Company.create()
-      #   write_attribute(:company_id, company.id)
-      # end
-      #
-      # def division_token=(val)
-      #   division = Division.find_by(token: val)
-      #
-      #   write_attribute(:division_id, division.id)
-      # end
-      #
-      # def department_token=(val)
-      #   department = Department.find_by(token: val)
-      #   write_attribute(:department_id, department.id)
-      # end
-      #
-      # def supervisor_token=(val)
-      #   user = User.find_by(jarvis_token: val)
-      #   self.parent = user
-      # end
-
-      # after create we are going to post the new user to the brain
-      after_create do
-        puts "created"
-      end
-
-      # after an update we will put the changes to the brain
-      after_update do
-        puts "updated"
-      end
-    end
-  end
 end
