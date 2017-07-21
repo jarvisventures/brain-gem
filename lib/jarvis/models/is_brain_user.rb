@@ -13,6 +13,7 @@ module Jarvis
         belongs_to :department, optional: true
         belongs_to :division, optional: true
         belongs_to :location, optional: true
+        has_ancestry
         after_create do
           debugger
           method = "post"
