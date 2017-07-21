@@ -1,4 +1,3 @@
-# require 'serializers/user_serializer'
 module Jarvis
   module IsBrainUser
     extend ActiveSupport::Concern
@@ -19,15 +18,23 @@ module Jarvis
           url = ENV["BRAIN_URL"] + "/user"
           body = self.jarvis_user_serializer
           results = HTTParty.public_send(method, url, body: body).deep_symbolize_keys
-          debugger
           self.update(brain_token: results[:user][:brain_token])
+        end
+        after_update do
+          method = "put"
+          url = ENV["BRAIN_URL"] + "/user"
+          body = self.jarvis_user_serializer
+          HTTParty.public_send(method, url, body: body)
+        end
+        after_destroy do
+          method = "delete"
+          url = ENV["BRAIN_URL"] + "/user"
+          body = self.jarvis_user_serializer
+          HTTParty.public_send(method, url, body: body)
         end
       end
     end
     module LocalInstanceMethods
-      def output
-        puts "I hope this works"
-      end
       def jarvis_user_serializer
         hash = self.attributes
         hash[:company] = !self.company.blank? ? self.company.to_json : {}
