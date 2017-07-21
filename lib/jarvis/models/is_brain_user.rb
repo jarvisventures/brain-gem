@@ -1,4 +1,4 @@
-require 'serializers/user_serializer'
+# require 'serializers/user_serializer'
 module Jarvis
   module IsBrainUser
     extend ActiveSupport::Concern
