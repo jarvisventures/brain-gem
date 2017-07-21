@@ -36,5 +36,6 @@ Gem::Specification.new do |spec|
   spec.add_dependency 'httparty', '~> 0.15.5'
   spec.add_dependency 'ancestry', '~> 3.0.0'
   spec.add_dependency 'figaro', '~> 1.1.1'
+  spec.add_dependency 'active_record_serializer'
 
 end

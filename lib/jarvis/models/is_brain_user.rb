@@ -7,7 +7,7 @@ module Jarvis
     end
 
     module ClassMethods
-      class UserSerializer < ActiveModel::Serializers
+      class UserSerializer < ActiveModel::Serializer
         attributes :password_digest, :brain_token, :first_name, :last_name, :address_1, :address_2, :city, :state, :country, :zipcode, :age, :date_of_birth, :ethnicity, :gender, :marital_status, :active,
         :hr_software_id, :employee_number, :supervisor_id, :hire_date, :rehire_date, :termination_date, :ancestry, :last_changed
         has_one :division
@@ -25,6 +25,7 @@ module Jarvis
           method = "post"
           url = ENV["BRAIN_URL"] + "/user"
           body = UserSerializer.new(self)
+          debugger
           HTTParty.public_send(method, url, body: body)
         end
       end
