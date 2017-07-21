@@ -25,7 +25,7 @@ module Jarvis
           method = "post"
           url = ENV["BRAIN_URL"] + "/user"
           body = UserSerializer.new(self)
-          debugger
+          puts body
           HTTParty.public_send(method, url, body: body)
         end
       end
