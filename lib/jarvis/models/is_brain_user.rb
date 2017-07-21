@@ -28,12 +28,13 @@ module Jarvis
         puts "I hope this works"
       end
       def jarvis_user_serializer
-        hash = self.to_json
+        hash = self.attributes
         hash[:company] = !self.company.blank? ? self.company.to_json : {}
         hash[:department] = !self.department.blank? ? self.department.to_json : {}
         hash[:division] = !self.division.blank? ? self.division.to_json : {}
         hash[:location] = !self.location.blank? ? self.location.to_json : {}
-        return hash
+        return_hash = {user: hash}
+        return return_hash
       end
     end
   end
