@@ -12,25 +12,25 @@ module Jarvis
         after_create do
           method = "post"
           url = ENV["BRAIN_URL"] + "/user"
-          body = jarvis_user_serializer
+          body = self.jarvis_user_serializer
           results = HTTParty.public_send(method, url, body: body)
           self.brain_token = results[:user][:brain_token]
         end
-        private
-          def jarvis_user_serializer
-            hash = self.to_json
-            hash.merge(company: self.company.to_json) if self.company
-            hash.merge(department: self.department.to_json) if self.department
-            hash.merge(division: self.division.to_json) if self.division
-            hash.merge(location: self.company.to_json) if self.location
-            return hash
-          end
       end
     end
     module LocalInstanceMethods
       def output
         puts "I hope this works"
       end
+      private
+        def jarvis_user_serializer
+          hash = self.to_json
+          hash.merge(company: self.company.to_json) if self.company
+          hash.merge(department: self.department.to_json) if self.department
+          hash.merge(division: self.division.to_json) if self.division
+          hash.merge(location: self.company.to_json) if self.location
+          return hash
+        end
     end
   end
 end
