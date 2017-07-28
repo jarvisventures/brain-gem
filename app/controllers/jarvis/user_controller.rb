@@ -1,4 +1,4 @@
-require_dependency "jarvis/application_controller"
+require "jarvis/application_controller"
 
 module Jarvis
   class UserController < ApplicationController
