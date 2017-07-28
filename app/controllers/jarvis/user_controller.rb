@@ -4,7 +4,6 @@ module Jarvis
   class UserController < ApplicationController
     before_action :set_user, only: [:show, :update, :destroy]
     before_action :set_company, :set_department, :set_division, :set_location
-    skip_before_action :authenticate
 
     # GET /users/1
     def show
