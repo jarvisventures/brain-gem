@@ -12,6 +12,7 @@ require 'jarvis/models/is_brain_tag'
 require 'jarvis/models/is_brain_user_tag'
 require 'jarvis/models/is_brain_phone_number_tag'
 require 'jarvis/models/is_brain_email_tag'
+require "jarvis/engine"
 
 module Jarvis
 end
