@@ -13,7 +13,6 @@ require 'jarvis/models/is_brain_user_tag'
 require 'jarvis/models/is_brain_phone_number_tag'
 require 'jarvis/models/is_brain_email_tag'
 require "jarvis/engine"
-require "app/controllers/user_controller"
 
 module Jarvis
 end
