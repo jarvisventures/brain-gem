@@ -9,7 +9,7 @@ Gem::Specification.new do |s|
   s.version     = Jarvis::VERSION
   s.authors     = ["joshhaws"]
   s.email       = ["joshhaws0@gmail.com"]
-  s.homepage    = "brain homepage"
+  s.homepage    = "https://github.com/jarvisventures/brain-gem"
   s.summary     = "this is quite the summary"
   s.description = "I don't want to describe jarvis"
   s.license     = "MIT"
