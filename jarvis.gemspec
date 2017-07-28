@@ -9,9 +9,9 @@ Gem::Specification.new do |s|
   s.version     = Jarvis::VERSION
   s.authors     = ["joshhaws"]
   s.email       = ["joshhaws0@gmail.com"]
-  s.homepage    = "TODO"
-  s.summary     = "TODO: Summary of Jarvis."
-  s.description = "TODO: Description of Jarvis."
+  s.homepage    = "brain homepage"
+  s.summary     = "this is quite the summary"
+  s.description = "I don't want to describe jarvis"
   s.license     = "MIT"
 
   s.files = Dir["{app,config,db,lib}/**/*", "MIT-LICENSE", "Rakefile", "README.md"]
