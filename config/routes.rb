@@ -1,7 +1,7 @@
 Jarvis::Engine.routes.draw do
-  get '/jarvis/user', to: 'jarvis/user#show'
-  post '/jarvis/user', to: 'jarvis/user#create'
-  put '/jarvis/user', to: 'jarvis/user#update'
-  patch '/jarvis/user', to: 'jarvis/user#update'
-  delete '/jarvis/user', to: 'jarvis/user#destroy'
+  get '/user', to: 'user#show'
+  post '/user', to: 'user#create'
+  put '/user', to: 'user#update'
+  patch '/user', to: 'user#update'
+  delete '/user', to: 'user#destroy'
 end
