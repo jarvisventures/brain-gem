@@ -1,3 +1,5 @@
+require_dependency "jarvis/application_controller"
+
 module Jarvis
   class UserController < ApplicationController
     before_action :set_user, only: [:show, :update, :destroy]
